@@ -15,7 +15,7 @@ export default defineConfig(() => ({
     },
     proxy: {
       "/api": {
-        target: "https://platform-for-programs.onrender.com", // Point to your Render backend
+        target: "https://platform-for-programmers.onrender.com", // Point to your Render backend
         changeOrigin: true,
         secure: false,
       },
