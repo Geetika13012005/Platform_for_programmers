@@ -1,0 +1,86 @@
+[
+  {
+    "sid": "sid_de674bba7a7a984467616ae4",
+    "userId": "usr_a8c22e4a2c9962fc1b727eec",
+    "createdAt": 1758049505185,
+    "lastSeenAt": 1758049505185
+  },
+  {
+    "sid": "sid_c4586f16c833c39745ab478c",
+    "userId": "usr_a8c22e4a2c9962fc1b727eec",
+    "createdAt": 1758049520937,
+    "lastSeenAt": 1758049520937
+  },
+  {
+    "sid": "sid_9401d553c582440ff770f3cd",
+    "userId": "usr_a8c22e4a2c9962fc1b727eec",
+    "createdAt": 1758050460848,
+    "lastSeenAt": 1758050460848
+  },
+  {
+    "sid": "sid_ed7ed334b5b3f88580bad698",
+    "userId": "usr_a8c22e4a2c9962fc1b727eec",
+    "createdAt": 1758050480149,
+    "lastSeenAt": 1758050480149
+  },
+  {
+    "sid": "sid_e66e1cd23198b7b1d2f378e4",
+    "userId": "usr_a8c22e4a2c9962fc1b727eec",
+    "createdAt": 1758104788158,
+    "lastSeenAt": 1758104788158
+  },
+  {
+    "sid": "sid_42c478b0b02a7f164b0c9054",
+    "userId": "usr_a8c22e4a2c9962fc1b727eec",
+    "createdAt": 1758104797706,
+    "lastSeenAt": 1758104797706
+  },
+  {
+    "sid": "sid_775d72b72bb10042ce869034",
+    "userId": "usr_a8c22e4a2c9962fc1b727eec",
+    "createdAt": 1758104967239,
+    "lastSeenAt": 1758104967239
+  },
+  {
+    "sid": "sid_da7cf627ee0ddccc9f65f186",
+    "userId": "usr_5e55c5f62f70cd471b83871a",
+    "createdAt": 1758104992653,
+    "lastSeenAt": 1758104992653
+  },
+  {
+    "sid": "sid_7a7ff46d92496e5b51f33b62",
+    "userId": "usr_5e55c5f62f70cd471b83871a",
+    "createdAt": 1758105006730,
+    "lastSeenAt": 1758105006730
+  },
+  {
+    "sid": "sid_066fe33920342ad5f541156e",
+    "userId": "usr_5e55c5f62f70cd471b83871a",
+    "createdAt": 1758105213167,
+    "lastSeenAt": 1758105213167
+  },
+  {
+    "sid": "sid_acfaf509d01e3927fb242eea",
+    "userId": "usr_b2285f3b9f96f12702bd10ed",
+    "createdAt": 1758105947016,
+    "lastSeenAt": 1758105947016
+  },
+  {
+    "sid": "sid_4d386996583bda4262981209",
+    "userId": "usr_b2285f3b9f96f12702bd10ed",
+    "createdAt": 1758105970875,
+    "lastSeenAt": 1758105970875
+  },
+  {
+    "sid": "sid_88d8b6661077ab595fa46dcd",
+    "userId": "usr_b2285f3b9f96f12702bd10ed",
+    "createdAt": 1758106436683,
+    "lastSeenAt": 1758106436683
+  },
+  {
+    "sid": "sid_90dadd0085bffdc006579154",
+    "userId": "usr_5e55c5f62f70cd471b83871a",
+    "createdAt": 1760365729724,
+    "lastSeenAt": 1760436097387
+  }
+]
