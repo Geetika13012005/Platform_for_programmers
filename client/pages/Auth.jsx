@@ -27,6 +27,7 @@ export default function AuthPage() {
                 res = await api(`/api/auth/signup`, {
                     method: "POST",
                     body: JSON.stringify({ email, password, name }),
+                    showAuthErrors: true // Explicitly show auth errors during signup
                 });
                 // server returns { message, newUser, token }
                 if (res?.token) {
@@ -36,6 +37,7 @@ export default function AuthPage() {
                 res = await api(`/api/auth/login`, {
                     method: "POST",
                     body: JSON.stringify({ email, password }),
+                    showAuthErrors: true // Explicitly show auth errors during login
                 });
                 // server returns { message, data, token }
                 if (res?.token) {

@@ -19,20 +19,7 @@ export default function Header() {
                   Dashboard
                 </button>
                 <button
-                  onClick={async () => {
-                    try {
-                      const resp = await fetch("/api/notebooks", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        credentials: "include",
-                        body: JSON.stringify({}),
-                      });
-                      const nb = await resp.json();
-                      navigate(`/?nb=${nb.id}`);
-                    } catch {
-                      navigate("/");
-                    }
-                  }}
+                  onClick={() => navigate("/notebook/new")}
                   className="button button-primary"
                 >
                   + New notebook

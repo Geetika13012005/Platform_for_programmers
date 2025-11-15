@@ -30,7 +30,6 @@ body {
   padding: 0.5rem 0;
 }
 
-
 .header-content {
   display: flex;
   align-items: center;
@@ -40,6 +39,13 @@ body {
   padding: 0 2rem;
   height: 3.5rem;
 }
+
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .logo-link {
   display: flex;
   align-items: center;
@@ -49,16 +55,28 @@ body {
   color: inherit;
   font-size: 1.2rem;
 }
+
 .logo-icon {
   height: 1.8rem;
   width: 1.8rem;
   border-radius: 0.4rem;
   background: linear-gradient(135deg, #f59e0b, #e11d48);
 }
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+
+.logo-text {
+  letter-spacing: -0.025em;
+}
+
+.user-name {
+  font-size: 0.875rem;
+  color: #666;
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .user-name {
+    display: inline;
+  }
 }
 .button {
   display: inline-block;
@@ -246,53 +264,6 @@ body {
   }
 }
 
-.header-left, .header-right {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.logo-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: inherit;
-}
-
-.logo-icon {
-  height: 1.5rem;
-  width: 1.5rem;
-  border-radius: 0.25rem;
-  background: linear-gradient(to bottom right, #f59e0b, #e11d48);
-}
-
-.logo-text {
-  letter-spacing: -0.025em;
-}
-
-.user-name {
-  font-size: 0.875rem;
-  color: #666;
-  display: none;
-}
-
-@media (min-width: 640px) {
-  .user-name {
-    display: inline;
-  }
-}
-
-.button-secondary {
-  background-color: transparent;
-  border: 1px solid #e5e5e5;
-}
-
-.button-secondary:hover {
-  background-color: #f5f5f5;
-}
-
 /* Auth page styles */
 .auth-page {
   min-height: 100vh;
@@ -415,4 +386,164 @@ body {
 
 .mt-4 {
   margin-top: 1rem;
+}
+
+/* ===== MOBILE RESPONSIVE STYLES ===== */
+
+/* Mobile First: Base styles for mobile devices */
+@media (max-width: 768px) {
+  /* Welcome page mobile */
+  .welcome h1 {
+    font-size: 2rem;
+  }
+  
+  .welcome p {
+    font-size: 1rem;
+  }
+  
+  .welcome .actions {
+    flex-direction: column;
+  }
+  
+  .welcome-features {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* Header mobile */
+  .header-content {
+    padding: 0 1rem;
+    height: auto;
+    min-height: 3.5rem;
+  }
+  
+  .header-right {
+    gap: 0.5rem;
+  }
+  
+  .button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Auth page mobile */
+  .auth-container {
+    margin: 2rem auto 0;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome h1 {
+    font-size: 1.5rem;
+  }
+  
+  .logo-text {
+    display: none;
+  }
+  
+  .button {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+  
+  .welcome {
+    padding: 1rem;
+    margin: 1rem;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+/* Touch device improvements */
+@media (hover: none) and (pointer: coarse) {
+  .button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .form-input,
+  textarea {
+    font-size: 16px !important; /* Prevent zoom on iOS */
+  }
+}
+
+/* ===== NOTEBOOK EDITOR RESPONSIVE STYLES ===== */
+
+/* Mobile notebook editor */
+@media (max-width: 768px) {
+  .notebook-main-content {
+    flex-direction: column !important;
+  }
+  
+  .notebook-sidebar {
+    width: 100% !important;
+    max-height: 200px;
+    border-right: none !important;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .notebook-editor-area {
+    width: 100% !important;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .notebook-sidebar {
+    max-height: 150px;
+  }
+}
+
+/* Dashboard responsive */
+@media (max-width: 640px) {
+  /* Make dashboard grid single column on mobile */
+  div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== MOBILE NAVIGATION MENU ===== */
+
+/* Hide hamburger on desktop, show on mobile */
+.mobile-menu-toggle {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block !important;
+  }
+  
+  .desktop-menu {
+    display: none !important;
+  }
+}
+
+/* Mobile menu dropdown scrollbar styling */
+.mobile-menu-dropdown {
+  scrollbar-width: thin;
+  scrollbar-color: #555 #2d2d2d;
+}
+
+.mobile-menu-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mobile-menu-dropdown::-webkit-scrollbar-track {
+  background: #2d2d2d;
+}
+
+.mobile-menu-dropdown::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 3px;
+}
+
+.mobile-menu-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #666;
 }

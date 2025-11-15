@@ -28,7 +28,14 @@ export function useAuth() {
     }, []);
     
     useEffect(() => {
-        refresh();
+        // Only try to refresh if we have a token
+        const token = localStorage.getItem("auth_token");
+        if (token) {
+            refresh();
+        } else {
+            // No token, set not loading immediately
+            setLoading(false);
+        }
     }, [refresh]);
     
     const logout = useCallback(async () => {

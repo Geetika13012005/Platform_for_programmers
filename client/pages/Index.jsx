@@ -36,7 +36,7 @@ export default function Index() {
       const nbParam = params.get("nb");
 
       async function tryLoad() {
-        if (nbParam) {
+        if (nbParam && nbParam !== 'undefined' && nbParam !== 'null') {
           const found = await api(`/api/notebooks/${nbParam}`);
           setNb(found);
           setTitle(found.title || "Untitled Notebook");

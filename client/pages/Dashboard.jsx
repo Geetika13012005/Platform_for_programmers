@@ -1,6 +1,6 @@
 import Header from "../components/layout/Header";
 import { useAuth } from "../hooks/useAuth";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../lib/api";
 
@@ -67,6 +67,7 @@ int main(){
   },
 ];
 
+// Default notebook for creating a new one
 const defaultNotebook = [
   { id: crypto.randomUUID(), language: "python", code: "print('Hello from Python!')" },
 ];
@@ -105,36 +106,32 @@ export default function Dashboard() {
     fetchNotebooks();
   }, [user, loading]);
 
-  // Filtered samples for search
-  const filtered = useMemo(() => {
+  // Filtered sample notebooks for search
+  const filteredSamples = useMemo(() => {
     const q = query.toLowerCase();
     return samples.filter((s) => s.title.toLowerCase().includes(q));
   }, [query]);
 
   // ------------------- CREATE NOTEBOOK -------------------
-  async function openNotebook(cells) {
+  const openNotebook = useCallback(async (cells) => {
     try {
       const newNotebook = await api("/api/notebooks", {
         method: "POST",
         body: JSON.stringify({ cells }),
       });
 
-      console.log("✅ Created notebook:", newNotebook);
-
       const id = newNotebook?.id || newNotebook?._id;
       if (!id) {
-        console.error("Notebook creation returned unexpected response:", newNotebook);
-        alert("Notebook created but server did not return an ID. Check backend logs.");
+        console.error("No valid ID returned from API", newNotebook);
+        alert("Notebook created but no valid ID returned!");
         return;
       }
-
-      // ✅ Navigate to notebook page using query param
-      navigate(`/notebook?nb=${id}`);
+      navigate(`/notebook/${id}`);
     } catch (error) {
       console.error("Failed to create notebook:", error);
       alert("Failed to create notebook. Please try again.");
     }
-  }
+  }, [navigate]);
 
   // ------------------- UPLOAD NOTEBOOK -------------------
   async function onUpload(file) {
@@ -181,14 +178,14 @@ export default function Dashboard() {
   return (
     <div>
       <Header />
-      <main className="container" style={{ maxWidth: 1000, margin: "0 auto", padding: "2rem 0" }}>
-        {/* HEADER SECTION */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
-          <div>
-            <h1 style={{ fontSize: 32, fontWeight: 800, marginBottom: 8 }}>
+      <main className="container" style={{ maxWidth: 1000, margin: "0 auto", padding: "clamp(1rem, 3vw, 2rem) clamp(0.5rem, 2vw, 1rem)" }}>
+        {/* HEADER */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24, flexWrap: "wrap", gap: 16 }}>
+          <div style={{ flex: "1 1 auto", minWidth: "250px" }}>
+            <h1 style={{ fontSize: "clamp(24px, 5vw, 32px)", fontWeight: 800, marginBottom: 8 }}>
               Welcome, {user.name || "User"}
             </h1>
-            <p style={{ fontSize: 17, color: "#444", marginBottom: 0, maxWidth: 700 }}>
+            <p style={{ fontSize: "clamp(14px, 2.5vw, 17px)", color: "#444", marginBottom: 0, maxWidth: 700 }}>
               Colaboratory is a free notebook environment. Execute Python, C++, and JavaScript code with built-in
               libraries.
             </p>
@@ -200,7 +197,7 @@ export default function Dashboard() {
 
         {/* NOTEBOOK ACTIONS */}
         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12, marginBottom: 24 }}>
-          <button onClick={() => openNotebook(defaultNotebook)} className="button button-primary">
+          <button onClick={() => navigate("/notebook/new")} className="button button-primary">
             + New notebook
           </button>
 
@@ -237,11 +234,11 @@ export default function Dashboard() {
         </div>
 
         {/* USER NOTEBOOKS */}
-        <h2 style={{ fontSize: 22, fontWeight: 700, margin: "32px 0 16px 0" }}>Your Notebooks</h2>
+        <h2 style={{ fontSize: "clamp(18px, 4vw, 22px)", fontWeight: 700, margin: "32px 0 16px 0" }}>Your Notebooks</h2>
         {loadingNotebooks ? (
           <div>Loading notebooks...</div>
         ) : notebooks.length > 0 ? (
-          <div style={{ display: "grid", gap: 24, gridTemplateColumns: "1fr 1fr", marginBottom: 40 }}>
+          <div style={{ display: "grid", gap: 24, gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", marginBottom: 40 }}>
             {notebooks.map((notebook) => (
               <div
                 key={notebook.id}
@@ -261,7 +258,7 @@ export default function Dashboard() {
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <button
-                    onClick={() => navigate(`/notebook?nb=${notebook.id}`)}
+                    onClick={() => navigate(`/notebook/${notebook.id}`)}
                     className="button button-primary"
                     style={{ fontSize: 15, padding: "6px 18px" }}
                   >
@@ -282,16 +279,16 @@ export default function Dashboard() {
             }}
           >
             <p>You don't have any notebooks yet.</p>
-            <button onClick={() => openNotebook(defaultNotebook)} className="button button-primary">
+            <button onClick={() => navigate("/notebook/new")} className="button button-primary">
               Create your first notebook
             </button>
           </div>
         )}
 
         {/* SAMPLE NOTEBOOKS */}
-        <h2 style={{ fontSize: 22, fontWeight: 700, margin: "32px 0 16px 0" }}>Machine Learning Examples</h2>
-        <div style={{ display: "grid", gap: 24, gridTemplateColumns: "1fr 1fr", marginBottom: 40 }}>
-          {filtered.map((s) => (
+        <h2 style={{ fontSize: "clamp(18px, 4vw, 22px)", fontWeight: 700, margin: "32px 0 16px 0" }}>Machine Learning Examples</h2>
+        <div style={{ display: "grid", gap: 24, gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", marginBottom: 40 }}>
+          {filteredSamples.map((s) => (
             <div
               key={s.id}
               style={{

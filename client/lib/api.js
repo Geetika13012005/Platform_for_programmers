@@ -48,7 +48,11 @@ export async function api(url, options = {}) {
         }
         catch { }
         console.error("API error:", message);
-        alert(`API Error: ${message}`);
+        
+        // Only show alert for non-auth errors or explicit auth actions
+        if (!message.toLowerCase().includes('token') || options.showAuthErrors) {
+            alert(`API Error: ${message}`);
+        }
 
         throw new Error(message);
     }
